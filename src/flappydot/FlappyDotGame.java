@@ -8,7 +8,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 	public class FlappyDotGame extends BasicGame {
-		 
+		  public static final int GAME_WIDTH = 640;
+		  public static final int GAME_HEIGHT = 480;
 		  private Dot dot;
 
 		public FlappyDotGame(String title) {
@@ -26,7 +27,7 @@ import org.newdawn.slick.SlickException;
 		public void init(GameContainer container) throws SlickException {
 		    Color background = new Color(128, 128, 128);
 		    container.getGraphics().setBackground(background); 
-		    dot = new Dot(320, 240);
+		    dot = new Dot(GAME_WIDTH/2, GAME_HEIGHT/2);
 			
 		}
 
@@ -40,7 +41,7 @@ import org.newdawn.slick.SlickException;
 			    try {
 			    	FlappyDotGame game = new FlappyDotGame("Super Ship Game");
 			      AppGameContainer appgc = new AppGameContainer(game);
-			      appgc.setDisplayMode(640, 480, false);
+			      appgc.setDisplayMode(GAME_WIDTH, GAME_HEIGHT, false);
 			      appgc.start();
 			    } catch (SlickException e) {
 			      e.printStackTrace();
