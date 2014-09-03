@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
 	public class FlappyDotGame extends BasicGame {
 		  public static final int GAME_WIDTH = 640;
 		  public static final int GAME_HEIGHT = 480;
-		  public static final float DOT_INITIAL_VY = 10;
+		  public static final float DOT_JUMP_VY = 10;
 		  public static final float G = (float) -0.5;
 		  private Dot dot;
 
@@ -30,8 +30,7 @@ import org.newdawn.slick.SlickException;
 		public void init(GameContainer container) throws SlickException {
 		    Color background = new Color(128, 128, 128);
 		    container.getGraphics().setBackground(background); 
-	//	    dot = new Dot(GAME_WIDTH/2, GAME_HEIGHT/2);
-		    dot = new Dot(GAME_WIDTH/2, GAME_HEIGHT/2, -(DOT_INITIAL_VY));
+		    dot = new Dot(GAME_WIDTH/2, GAME_HEIGHT/2, -(DOT_JUMP_VY));
 			
 		}
 
@@ -44,7 +43,7 @@ import org.newdawn.slick.SlickException;
 		@Override
 		  public void keyPressed(int key, char c) {
 			if (key == Input.KEY_SPACE) {
-			      dot.setVy(DOT_INITIAL_VY);
+					dot.jump(DOT_JUMP_VY);
 			    }
 		  }
 		 
