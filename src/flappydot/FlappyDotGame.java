@@ -1,5 +1,6 @@
 package flappydot;
 
+import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,23 +13,32 @@ import org.newdawn.slick.SlickException;
 		  }
 
 		@Override
-		public void render(GameContainer arg0, Graphics arg1)
+		public void render(GameContainer container, Graphics g)
 				throws SlickException {
 			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
-		public void init(GameContainer arg0) throws SlickException {
+		public void init(GameContainer container) throws SlickException {
 			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
-		public void update(GameContainer arg0, int arg1) throws SlickException {
+		public void update(GameContainer container, int delta) throws SlickException {
 			// TODO Auto-generated method stub
 			
 		}
 		 
-		  // ... เพิ่มเอง
+		 public static void main(String[] args) {
+			    try {
+			    	FlappyDotGame game = new FlappyDotGame("Super Ship Game");
+			      AppGameContainer appgc = new AppGameContainer(game);
+			      appgc.setDisplayMode(640, 480, false);
+			      appgc.start();
+			    } catch (SlickException e) {
+			      e.printStackTrace();
+			    }
+			  }
 		}
