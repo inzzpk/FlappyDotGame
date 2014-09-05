@@ -16,16 +16,20 @@ import org.newdawn.slick.SlickException;
 		  private boolean isStarted = false;
 		  private Dot dot;
 		  private PillarPair pillar;
+		  public static final float PILLAR_VX = -4;
+		  private PillarPair[] pillars;
+		  public static final int PILLAR_COUNT = 3;
 
 		public FlappyDotGame(String title) {
 		    super(title);
 		  }
 
 		@Override
-		public void render(GameContainer container, Graphics g)
-				throws SlickException {
-					dot.render();
-					pillar.render();
+		public void render(GameContainer container, Graphics g) throws SlickException {
+			for (PillarPair pillar : pillars) {
+			      pillar.render();
+			    }
+			    dot.render();
 			
 		}
 
@@ -34,15 +38,26 @@ import org.newdawn.slick.SlickException;
 		    Color background = new Color(128, 128, 128);
 		    container.getGraphics().setBackground(background); 
 		    dot = new Dot(GAME_WIDTH/2, GAME_HEIGHT/2, -(DOT_JUMP_VY));
-		    pillar = new PillarPair(GAME_WIDTH/2, GAME_HEIGHT/2);
+		    pillar = new PillarPair(GAME_WIDTH/2, GAME_HEIGHT/2, PILLAR_VX);
+		    initPillars();
 			
+		}
+
+		private void initPillars() throws SlickException {
+			pillars = new PillarPair[PILLAR_COUNT];
+		    for (int i = 0; i < PILLAR_COUNT; i++) {
+		      pillars[i] = new PillarPair(GAME_WIDTH + 100 + 250*i, GAME_HEIGHT/2, PILLAR_VX);
+		    }
 		}
 
 		@Override
 		public void update(GameContainer container, int delta) throws SlickException {
-			if(isStarted == true)
+			if(isStarted == true){
 				dot.update();
-			
+				for (int i = 0; i < PILLAR_COUNT; i++){
+						pillars[i].update();
+						}
+			}
 		}
 		
 		@Override
