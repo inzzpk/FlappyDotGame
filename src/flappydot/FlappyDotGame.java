@@ -13,6 +13,7 @@ import org.newdawn.slick.SlickException;
 		  public static final int GAME_HEIGHT = 480;
 		  public static final float DOT_JUMP_VY = 10;
 		  public static final float G = (float) -0.5;
+		  private boolean isStarted = false;
 		  private Dot dot;
 
 		public FlappyDotGame(String title) {
@@ -36,13 +37,15 @@ import org.newdawn.slick.SlickException;
 
 		@Override
 		public void update(GameContainer container, int delta) throws SlickException {
-			dot.update();
+			if(isStarted == true)
+				dot.update();
 			
 		}
 		
 		@Override
 		  public void keyPressed(int key, char c) {
 			if (key == Input.KEY_SPACE) {
+				  	isStarted = true;
 					dot.jump(DOT_JUMP_VY);
 			    }
 		  }
