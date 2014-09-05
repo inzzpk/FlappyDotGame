@@ -15,6 +15,7 @@ import org.newdawn.slick.SlickException;
 		  public static final float G = (float) -0.5;
 		  private boolean isStarted = false;
 		  private Dot dot;
+		  private PillarPair pillar;
 
 		public FlappyDotGame(String title) {
 		    super(title);
@@ -24,6 +25,7 @@ import org.newdawn.slick.SlickException;
 		public void render(GameContainer container, Graphics g)
 				throws SlickException {
 					dot.render();
+					pillar.render();
 			
 		}
 
@@ -32,6 +34,7 @@ import org.newdawn.slick.SlickException;
 		    Color background = new Color(128, 128, 128);
 		    container.getGraphics().setBackground(background); 
 		    dot = new Dot(GAME_WIDTH/2, GAME_HEIGHT/2, -(DOT_JUMP_VY));
+		    pillar = new PillarPair(GAME_WIDTH/2, GAME_HEIGHT/2);
 			
 		}
 
