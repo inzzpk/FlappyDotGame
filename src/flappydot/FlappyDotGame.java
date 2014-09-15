@@ -14,10 +14,12 @@ import org.newdawn.slick.SlickException;
 		  public static final float DOT_JUMP_VY = 10;
 		  public static final float G = (float) -0.5;
 		  private boolean isStarted = false;
+		  private boolean isGameOver = false;
 		  private Dot dot;
 		  private PillarPair pillar;
 		  public static final float PILLAR_VX = -4;
 		  private PillarPair[] pillars;
+		  private PillarPair p;
 		  public static final int PILLAR_COUNT = 3;
 
 		public FlappyDotGame(String title) {
@@ -52,12 +54,20 @@ import org.newdawn.slick.SlickException;
 
 		@Override
 		public void update(GameContainer container, int delta) throws SlickException {
-			if(isStarted == true){
-				dot.update();
-				for (int i = 0; i < PILLAR_COUNT; i++){
-						pillars[i].update();
+			if(isGameOver == false){
+				if(isStarted == true){
+					dot.update();
+					for (PillarPair pillar : pillars) {		
+						pillar.update();
+						if (dot.isCollide(pillar)){
+							System.out.println("gg");
+							isGameOver = true;
 						}
+					}
+				}
 			}
+			else System.out.println("over");
+
 		}
 		
 		@Override
@@ -70,7 +80,7 @@ import org.newdawn.slick.SlickException;
 		 
 		 public static void main(String[] args) {
 			    try {
-			    	FlappyDotGame game = new FlappyDotGame("Super Ship Game");
+			    	FlappyDotGame game = new FlappyDotGame("FlappyDot Game");
 			      AppGameContainer container = new AppGameContainer(game);
 			      container.setDisplayMode(GAME_WIDTH, GAME_HEIGHT, false);
 			      container.setMinimumLogicUpdateInterval(1000 / 60);
